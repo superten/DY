@@ -18,7 +18,7 @@ class HomeViewController: UIViewController {
         return pageTitleView
     }()
     
-    lazy var pageContentView: PageContentView = {
+    lazy var pageContentView: PageContentView = {[weak self] in
         var childVcs = [UIViewController]()
         for _ in 0..<4 {
             let vc = UIViewController()

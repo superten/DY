@@ -12,11 +12,11 @@ let CellID = "CellID"
 class PageContentView: UIView {
     
     private var childVcs:[UIViewController]
-    private var parentVc: UIViewController
+    private weak var parentVc: UIViewController?
     
-    lazy var collectionView: UICollectionView = {
+    lazy var collectionView: UICollectionView = {[weak self] in
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = bounds.size
+        layout.itemSize = (self?.bounds.size)!
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         layout.scrollDirection = .horizontal
@@ -31,7 +31,7 @@ class PageContentView: UIView {
         return collectionView
     }()
 
-    init(frame: CGRect, childVcs: [UIViewController], parentVc: UIViewController) {
+    init(frame: CGRect, childVcs: [UIViewController], parentVc: UIViewController?) {
         self.childVcs = childVcs
         self.parentVc = parentVc
         super.init(frame: frame)
@@ -47,9 +47,8 @@ class PageContentView: UIView {
 extension PageContentView {
     private func setupUI(){
         for childVc in childVcs {
-            parentVc.addChild(childVc)
+            parentVc?.addChild(childVc)
         }
-        
         
         addSubview(collectionView)
         collectionView.frame = bounds
