@@ -8,8 +8,15 @@
 
 import UIKit
 
+fileprivate let kPageTitleBarH: CGFloat = 40
 class HomeViewController: UIViewController {
 
+    lazy var pageTitleView: PageTitleView = {
+        let frame = CGRect(x: 0, y: kStatusBarH + (self.navigationController?.navigationBar.frame.size.height)!, width: kScreenW, height: kPageTitleBarH)
+        let labels = ["推荐", "游戏", "娱乐", "趣玩"]
+        let pageTitleView = PageTitleView(frame: frame, labels: labels)
+        return pageTitleView
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -21,6 +28,8 @@ class HomeViewController: UIViewController {
 extension HomeViewController {
     private func setupUI() {
         setupNavbar()
+        
+        view.addSubview(pageTitleView)
     }
     
     private func setupNavbar() {
@@ -32,4 +41,5 @@ extension HomeViewController {
         let qrcode = UIBarButtonItem(image: "Image_scan", highlighted: "Image_scan_click", size: size)
         navigationItem.rightBarButtonItems = [history, search, qrcode]
     }
+
 }
