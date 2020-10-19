@@ -17,6 +17,19 @@ class HomeViewController: UIViewController {
         let pageTitleView = PageTitleView(frame: frame, labels: labels)
         return pageTitleView
     }()
+    
+    lazy var pageContentView: PageContentView = {
+        var childVcs = [UIViewController]()
+        for _ in 0..<4 {
+            let vc = UIViewController()
+            vc.view.backgroundColor = UIColor(r: CGFloat(arc4random_uniform(255)), g: CGFloat(arc4random_uniform(255)), b: CGFloat(arc4random_uniform(255)))
+            childVcs.append(vc)
+        }
+        let frame = CGRect(x: 0.0, y: pageTitleView.frame.maxY, width: view.frame.width, height: kScreenH - pageTitleView.frame.maxY)
+        let pageContentView = PageContentView(frame: frame, childVcs: childVcs, parentVc: self)
+        return pageContentView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -30,6 +43,7 @@ extension HomeViewController {
         setupNavbar()
         
         view.addSubview(pageTitleView)
+        view.addSubview(pageContentView)
     }
     
     private func setupNavbar() {
