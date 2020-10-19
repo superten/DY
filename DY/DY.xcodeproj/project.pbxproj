@@ -129,11 +129,11 @@
 		591E7F3F253D4CD20019EC56 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				591E7F40253D4CD20019EC56 /* Home */,
-				591E7F41253D4CD20019EC56 /* Tools */,
-				591E7F42253D4CD20019EC56 /* Profile */,
-				591E7F43253D4CD20019EC56 /* Live */,
 				591E7F44253D4CD20019EC56 /* Main */,
+				591E7F40253D4CD20019EC56 /* Home */,
+				591E7F43253D4CD20019EC56 /* Live */,
+				591E7F42253D4CD20019EC56 /* Profile */,
+				591E7F41253D4CD20019EC56 /* Tools */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
